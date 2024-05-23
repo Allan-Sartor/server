@@ -12,6 +12,10 @@ gem "rack-cors"
 gem 'i18n'
 gem 'devise'
 gem 'kaminari'
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-rake', require: false
 
 group :development do
   gem 'bullet'
@@ -29,6 +33,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.4"
   gem "faker", "~> 3.3"
   gem "rspec-rails", "~> 6.1"
+  gem 'rubocop-rspec', '~> 2.6.0', require: false
 end
 
 
