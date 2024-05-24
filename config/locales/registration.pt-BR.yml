@@ -1,0 +1,7 @@
+# encoding: UTF-8
+# pt-BR translations for RegistrationController
+pt-BR:
+  registration:
+    account:
+      destroy_success: "Conta excluída com sucesso."
+      destroy_error: "Senha inválida, conta não excluída."
