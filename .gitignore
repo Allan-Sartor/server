@@ -30,3 +30,6 @@
 
 # ignore report tests
 /coverage
+
+# Hide env files
+.env.*
