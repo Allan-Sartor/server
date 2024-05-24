@@ -25,6 +25,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', '~> 2.6.0', require: false
+  gem 'solargraph'
 end
 
 group :development do

@@ -10,8 +10,12 @@ echo "Criando novo banco de dados..."
 
 bundle exec rails db:create
 
-echo "Montando as migrações..."
+echo "Montando as migrações de desenvolvimento..."
 
 bundle exec rails db:migrate
+
+echo "Montando as migrações de testes..."
+
+bundle exec rails db:migrate RAILS_ENV=test
 
 echo "Banco de dados resetado com sucesso!"
