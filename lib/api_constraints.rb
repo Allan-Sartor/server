@@ -23,6 +23,6 @@ class ApiConstraints
   # Returns:
   # - Boolean: Retorna verdadeiro se a requisição corresponde à versão da API ou se é a versão padrão.
   def matches?(req)
-    @default || req.headers['Accept']&.include?("application/server.v#{@version}")
+    @default || req.headers['Accept']&.include?("application/vnd.server.v#{@version}")
   end
 end
