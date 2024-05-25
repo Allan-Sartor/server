@@ -7,10 +7,10 @@ class Api::V1::ContactsController < ApplicationController
 
   # GET /contacts
   def index
-    @contacts = current_api_user.contacts.includes(:user)
-                                .sorted(params[:sort], params[:dir])
-                                .page(current_page)
-                                .per(per_page)
+    @contacts = filter_contacts
+                .sorted(params[:sort], params[:dir])
+                .page(current_page)
+                .per(per_page)
 
     render json: { contacts: @contacts, meta: meta_attributes(@contacts) }, adapter: :json
   end
@@ -60,6 +60,15 @@ class Api::V1::ContactsController < ApplicationController
 
   # Método para definir os parâmetros permitidos para criar/atualizar um contato.
   def contact_params
-    params.require(:contact).permit(:name, :cpf, :phone, :address, :latitude, :longitude)
+    params.require(:contact).permit(:name, :cpf, :phone, :address, :latitude, :longitude, :query)
+  end
+
+  # Método privado para filtrar contatos quando existe parametro "query"
+  def filter_contacts
+    if params[:query].present?
+      current_api_user.contacts.filter_by_cpf_or_name(params[:query])
+    else
+      current_api_user.contacts.includes(:user)
+    end
   end
 end

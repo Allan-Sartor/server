@@ -15,6 +15,10 @@ class Contact < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
 
+  def self.filter_by_cpf_or_name(query)
+    where('cpf LIKE ? OR name LIKE ?', "%#{query}%", "%#{query}%")
+  end
+
   def self.sort_by
     ['cpf', 'name']
   end
