@@ -37,12 +37,18 @@ module FormatHelper
   # Este método renderiza uma mensagem de erro no formato JSON.
   #
   # Params:
+  # - data: O objeto que contém os erros, se houver.
   # - message: A chave da mensagem de erro que será traduzida.
   # - status: O código de status HTTP que será retornado na resposta.
   #
   # Returns:
-  # - JSON: Um objeto JSON contendo a mensagem de erro traduzida.
-  def render_error_message(message, status)
-    render json: { error: render_message_i18n(message) }, status: status
+  # - JSON: Um objeto JSON contendo a mensagem de erro traduzida e, se presentes, os erros do objeto.
+  def render_error_message(data, message, status)
+    response = {
+      message: render_message_i18n(message),
+      errors: data.errors
+    }.compact
+
+    render json: response, status: status
   end
 end
