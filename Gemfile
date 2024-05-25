@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem "rack-cors"
 gem 'rack-attack'
 gem 'i18n'
+gem 'devise'
 gem "devise_token_auth", "~> 1.1"
 gem 'kaminari'
 gem 'active_model_serializers'
@@ -25,11 +26,12 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', '~> 2.6.0', require: false
-  gem 'solargraph'
+  gem 'solargraph', require: false
 end
 
 group :development do
   gem 'bullet'
+  gem 'letter_opener'
 end
 
 group :test do

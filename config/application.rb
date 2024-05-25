@@ -6,6 +6,11 @@ Bundler.require(*Rails.groups)
 
 module Server
   class Application < Rails::Application
+    # cofiguração session store
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
+
     config.load_defaults 7.0
 
     # Configura a aplicação como API only
