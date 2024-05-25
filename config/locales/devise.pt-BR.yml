@@ -1,6 +1,9 @@
 # encoding: UTF-8
 # pt-BR translations for Devise
 pt-BR:
+  devise_token_auth:
+    confirmations:
+      user_not_found: 'Usuário não localizado!'
   devise:
     confirmations:
       confirmed: "Sua conta foi confirmada com sucesso. Você está logado."

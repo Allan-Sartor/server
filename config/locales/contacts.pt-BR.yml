@@ -1,0 +1,11 @@
+# encoding: UTF-8
+# pt-BR translations for RegistrationController
+pt-BR:
+  contacts:
+    create:
+      success: "Contato criado com sucesso!"
+      error: "Ocorreu um erro durante o cadastro!"
+    update:
+      success: "Contato atualizado com sucesso!"
+      error: "Ocorreu um erro durante à atualização do contato!"
+    
