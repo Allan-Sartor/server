@@ -12,8 +12,8 @@ class Contact < ApplicationRecord
   validates :name, presence: true
   validates :phone, presence: true
   validates :address, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+
+  before_validation :geocode_address, if: -> { address.present? && will_save_change_to_address? }
 
   def self.filter_by_cpf_or_name(query)
     where('cpf LIKE ? OR name LIKE ?', "%#{query}%", "%#{query}%")
@@ -24,4 +24,16 @@ class Contact < ApplicationRecord
   end
 
   private_class_method :sort_by
+
+  private
+
+  def geocode_address
+    result = GoogleMapsService.fetch_geolocation(address)
+    if result[:error]
+      errors.add(:address, result[:error])
+    else
+      self.latitude = result[:latitude]
+      self.longitude = result[:longitude]
+    end
+  end
 end
