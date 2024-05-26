@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       # Define as rotas padrão CRUD (Create, Read, Update, Delete) para o recurso contacts "/api/contacts"
       resources :contacts
+
+      get 'addresses/:cep', to: 'addresses#search'
     end
   end
 end
