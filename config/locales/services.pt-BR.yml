@@ -1,0 +1,17 @@
+pt-BR:
+  via_cep_service:
+    errors:
+      unable_to_fetch_address: "Não foi possível obter o endereço para o CEP: %{cep}"
+  google_maps_service:
+    errors:
+      unable_to_fetch_geolocation: "Não foi possível obter a geolocalização para o endereço: %{address}"
+      no_results_found: "Nenhum resultado encontrado para o endereço: %{address}"
+      no_assign_api_key: "Google Maps API key não definida!"
+    success:
+      fetched_geolocation: "Geolocalização obtida com sucesso para o endereço: %{address}"
+  addresses_controller:
+    errors:
+      missing_cep: "CEP está faltando"
+  geolocations_controller:
+    errors:
+      missing_address_or_api_key: "Endereço ou chave de API está faltando"
