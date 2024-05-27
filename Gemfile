@@ -20,7 +20,7 @@ gem 'httparty'
 group :development, :test do
   gem "byebug", platforms: %i[ mri mingw x64_mingw ]
   gem "factory_bot_rails", "~> 6.4"
-  gem "faker", "~> 3.3"
+  gem "faker", "~> 3.3", require: false
   gem 'dotenv-rails'
 end
 
@@ -35,10 +35,9 @@ group :development do
 end
 
 group :test do
-  gem "database_cleaner-active_record", "~> 2.1"
   gem "simplecov", "~> 0.22.0"
-  gem "shoulda-matchers", "~> 5.3"
   gem "simplecov_json_formatter", "~> 0.1.4"
+  gem "shoulda-matchers", "~> 5.3"
   gem 'rubocop-rspec', '~> 2.6.0', require: false
   gem "rspec-rails", "~> 6.1"
 end
