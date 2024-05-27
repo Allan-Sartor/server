@@ -27,5 +27,8 @@ module Server
 
     # Define o locale padrão
     I18n.default_locale = :"pt-BR"
+
+    # Devise
+    config.action_mailer.default_url_options = { host: 'localhost:3001' }
   end
 end

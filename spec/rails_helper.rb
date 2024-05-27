@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'simplecov'
 require 'simplecov_json_formatter'
+require 'faker'
+Faker::Config.locale = 'pt-BR'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'

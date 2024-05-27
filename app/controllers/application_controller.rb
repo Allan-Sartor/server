@@ -1,5 +1,5 @@
 # ApiController: Classe base que todos os demais controllers herdarão por padrão.
-# Esta classe é responsável por autenticar o usuário antes de cada ação.
+# Esta classe é responsável por autenticar o usuário antes de cada ação e por lidar com permissões e erros comuns.
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include FormatHelper

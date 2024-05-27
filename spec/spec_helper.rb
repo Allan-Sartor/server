@@ -91,4 +91,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.before(:suite) do
+    if ActiveRecord::Base.connection.table_exists?('users')
+      puts 'Banco de dados para testes já configurado!'
+    else
+      Rails.application.load_seed # Carrega os seeds padrão
+      load Rails.root.join('db/seeds/test.rb') # Carrega os seeds de teste
+    end
+  end
 end
