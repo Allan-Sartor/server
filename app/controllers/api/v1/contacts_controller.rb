@@ -68,7 +68,7 @@ class Api::V1::ContactsController < ApplicationController
     if params[:query].present?
       current_api_user.contacts.filter_by_cpf_or_name(params[:query])
     else
-      current_api_user.contacts.includes(:user)
+      current_api_user.contacts
     end
   end
 end
