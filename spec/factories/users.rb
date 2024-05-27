@@ -1,13 +1,17 @@
 FactoryBot.define do
   factory :user do
-    email { 'allansartor@outlook.com' }
-    provider { 'email' }
-    uid { 'allansartor@outlook.com' }
-    allow_password_change { false }
-    name { nil }
-    nickname { nil }
-    image { nil }
-    password { 'password123' }
-    password_confirmation { 'password123' }
+    email { Faker::Internet.email }
+    name { Faker::Name.name }
+    uid { email }
+    password { '12345678' }
+    password_confirmation { password }
+
+    factory :confirmed_user do
+      confirmed_at { Time.now }
+    end
+
+    factory :user_without_uid do
+      uid { '' }
+    end
   end
 end
