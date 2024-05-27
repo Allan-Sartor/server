@@ -44,8 +44,6 @@ class GoogleMapsService
     end
   end
 
-  private_class_method :parse_geolocation
-
   # Método: self.parse_geolocation
   #
   # Este método analisa a resposta da API do Google Maps para extrair a geolocalização.
