@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
-  let(:user) { create(:user) }
+  let(:user) { User.first }
   let(:contact) { build(:contact, user: user) }
 
   describe 'associations' do
@@ -15,10 +15,11 @@ RSpec.describe Contact, type: :model do
     it { is_expected.to validate_presence_of(:address) }
 
     it 'validates uniqueness of cpf scoped to user_id' do
-      duplicate_contact = create(:contact, cpf: contact.cpf, user: user)
+      existing_contact = user.contacts.first
 
-      puts duplicate_contact.errors.messages
-      expect(duplicate_contact.errors[:cpf])
+      duplicate_contact = build(:contact, cpf: existing_contact.cpf, user: user)
+
+      expect(duplicate_contact).not_to be_valid
     end
   end
 
@@ -34,16 +35,18 @@ RSpec.describe Contact, type: :model do
   describe 'class methods' do
     describe '.filter_by_cpf_or_name' do
       it 'returns contacts that match the query in cpf or name' do
-        contact1 = build(:contact, cpf: '123.456.789-00', name: 'John Doe', user: user)
-        contact2 = build(:contact, cpf: '987.654.321-00', name: 'Jane Smith', user: user)
+        query_name_first = user.contacts.first.name
+        query_name_two = user.contacts.last.name
 
-        result = Contact.filter_by_cpf_or_name('John')
-        expect(result).to include(contact1)
-        expect(result).not_to include(contact2)
+        result = user.contacts.filter_by_cpf_or_name(query_name_first)
 
-        result = Contact.filter_by_cpf_or_name('987.654')
-        expect(result).to include(contact2)
-        expect(result).not_to include(contact1)
+        expect(result).to include(user.contacts.first)
+        expect(result).not_to include(user.contacts.last)
+
+        result = user.contacts.filter_by_cpf_or_name('049')
+
+        expect(result).to include(user.contacts.last)
+        expect(result).not_to include(user.contacts.first)
       end
     end
 
