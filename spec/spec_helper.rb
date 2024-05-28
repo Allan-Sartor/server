@@ -92,11 +92,11 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
   config.before(:suite) do
-    if ActiveRecord::Base.connection.table_exists?('users')
-      puts 'Banco de dados para testes já configurado!'
-    else
+    if ActiveRecord::Base.connection.table_exists?('users') && !User.exists?
       Rails.application.load_seed # Carrega os seeds padrão
       load Rails.root.join('db/seeds/test.rb') # Carrega os seeds de teste
+    else
+      puts 'Não foi possível popular o banco de testes!'
     end
   end
 end

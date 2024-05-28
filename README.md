@@ -58,18 +58,19 @@ Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
 
 ```bash
 git clone https://github.com/Allan-Sartor/server.git
+
+# Acessar pasta do projeto
 cd server
 
-# Instalação das dependências
-bundle install
+# Acessar pasta
+cd bin
 
-# Criação do banco de dados e tabelas
-rails db:create
-rails db:migrate
-rails db:migrate RAILS_ENV=test
+# Agora rode no terminal
+sudo chmod +x setup_server.sh
 
-# Rode do projeto
-rails s -p 3001
+# Execute o script para que seja montado o servidor!
+./setup_server.sh
+
 ```
 
 3. Se tudo estiver certo, à API irá iniciar no endereço http://localhost:3001/
@@ -86,8 +87,10 @@ OBS:
 Para rodar os testes:
 
 ```bash
-bundle exec rspec
+rspec
 ```
+
+Obs: Os testes são executados no `./setup_server.sh` antes de iniciar o servidor!
 
 <hr>
 
@@ -106,9 +109,10 @@ touch .env.development
 2. Adicione o seguinte conteúdo no arquivo:
 
 ```bash
-password=your-password
-access-token=your-access-token
-client=your-client
+password=seu-password
+access-token=seu-access-token
+client=seu-client
+GOOGLE_MAPS_API_KEY=seu-google-maps-api-key
 ```
 
 3. No Insomnia, vá para `Manage Environments` e configure o valor `envFilePath` para o caminho do arquivo `.env.development`:
@@ -120,6 +124,8 @@ client=your-client
 ```
 
 Qualquer arquivo `.env.*` está sendo ignorado pelo GIT deste projeto.
+
+Obs: É de extrema importância que a key para o google maps seja definida para que ocorra o funcionamento correto da API e sua comunicação com a Google Maps.
 
 <hr>
 <h4 align="center">

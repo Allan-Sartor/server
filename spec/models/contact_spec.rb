@@ -43,7 +43,7 @@ RSpec.describe Contact, type: :model do
         expect(result).to include(user.contacts.first)
         expect(result).not_to include(user.contacts.last)
 
-        result = user.contacts.filter_by_cpf_or_name('049')
+        result = user.contacts.filter_by_cpf_or_name(user.contacts.last.cpf.to_s[0, 3])
 
         expect(result).to include(user.contacts.last)
         expect(result).not_to include(user.contacts.first)
