@@ -57,8 +57,6 @@ Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
 2. Configuração e Execução
 
 ```bash
-git clone https://github.com/Allan-Sartor/server.git
-
 # Acessar pasta do projeto
 cd server
 
