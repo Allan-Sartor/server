@@ -1,12 +1,13 @@
+
+# Controller: Api::V1::AddressesController
+#
+# O controller fornece buscas de endereços
+# através do serviço ViaCep utilizando o CEP informado.
+#
+# Este controller requer autenticação para acesso as suas ações.
+
 class Api::V1::AddressesController < ApplicationController
   before_action :authenticate_api_user!
-
-  # Controller: Api::V1::AddressesController
-  #
-  # O controller fornece buscas de endereços
-  # através do serviço ViaCep utilizando o CEP informado.
-  #
-  # Este controller requer autenticação para acesso as suas ações.
 
   # Método: search
   #
