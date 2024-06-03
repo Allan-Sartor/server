@@ -21,8 +21,6 @@ class ViaCepService
     { error: e.message }
   end
 
-  private_class_method :fetch_address
-
   # Analisa a resposta JSON da API Via Cep em um hash estruturado de endereço.
   def self.parse_address(response)
     {

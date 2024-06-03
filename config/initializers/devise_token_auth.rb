@@ -61,11 +61,11 @@ DeviseTokenAuth.setup do |config|
 
   # By default this value is expected to be sent by the client so that the API knows where to redirect users after successful email confirmation.
   # If this param is set, the API will redirect to this value when no value is provided by the client.
-  config.default_confirm_success_url = 'http://localhost:3000/sign_in'
+  config.default_confirm_success_url = 'http://localhost:5173/login'
 
   # By default this value is expected to be sent by the client so that the API knows where to redirect users after successful password resets.
   # If this param is set, the API will redirect to this value when no value is provided by the client.
-  config.default_password_reset_url = 'http://localhost:3000/reset-password'
+  config.default_password_reset_url = 'http://localhost:5173/reset_password'
 
   # By default DeviseTokenAuth will not send confirmation email, even when including
   # devise confirmable module. If you want to use devise confirmable module and
