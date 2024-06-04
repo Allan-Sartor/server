@@ -1,32 +1,36 @@
 # Classe Contact representa um contato que pertence a um usuário.
-# Inclui validações para garantir a presença e unicidade de atributos como CPF, nome, telefone, endereço, latitude e longitude.
-# Também realiza a validação do CPF com base em cálculos de dígitos verificadores.
 class Contact < ApplicationRecord
+  # Inclui o módulo Sortable para suporte à ordenação.
   include Sortable
 
-  belongs_to :user
-
+  # Inclui o validador de CPF personalizado.
   include CpfValidator
 
+  # Associações
+  belongs_to :user
+
+  # Validações
   validates :cpf, presence: true, uniqueness: { scope: :user_id }, on: :create
   validates :name, presence: true
   validates :phone, presence: true
   validates :address, presence: true
 
+  # Antes da validação, executa a geocodificação do endereço se houver mudanças no mesmo.
   before_validation :geocode_address, if: -> { address.present? && will_save_change_to_address? }
 
+  # Define o escopo de pesquisa para busca por CPF ou nome.
   def self.filter_by_cpf_or_name(query)
     where('cpf LIKE ? OR name LIKE ?', "%#{query}%", "%#{query}%")
   end
 
+  # Define os atributos pelos quais os resultados podem ser ordenados.
   def self.sort_by
     ['cpf', 'name']
   end
 
-  private_class_method :sort_by
-
   private
 
+  # Método privado para geocodificar o endereço usando um serviço externo, como Google Maps.
   def geocode_address
     result = GoogleMapsService.fetch_geolocation(address)
     if result[:error]
