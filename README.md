@@ -111,6 +111,9 @@ password=seu-password
 access-token=seu-access-token
 client=seu-client
 GOOGLE_MAPS_API_KEY=seu-google-maps-api-key
+POSTGRES_HOST_DEV=seu-host-db
+POSTGRES_USER_DEV=seu-user-db
+POSTGRES_PASSWORD_DEV=seu-password-db
 ```
 
 3. No Insomnia, vá para `Manage Environments` e configure o valor `envFilePath` para o caminho do arquivo `.env.development`:
